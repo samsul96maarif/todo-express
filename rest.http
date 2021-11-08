@@ -1,0 +1,96 @@
+### REGISTER
+POST http://localhost:8000/auth/register
+Content-Type: application/json
+
+{
+  "email": "user@telkom.com",
+  "password": "localhost"
+}
+
+### VALIDATE PASSWORD
+POST http://localhost:8000/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@telkom.com",
+  "password": "localhost"
+}
+
+### CREATE
+POST http://localhost:8000/checklists
+Content-Type: application/json
+
+{
+  "data": {
+    "attributes": {
+      "object_domain": "contact 2",
+      "object_id": "1",
+      "due": "2019-01-25T07:50:14+00:00",
+      "urgency": 1,
+      "description": "Need to verify this guy house."
+    }
+  }
+}
+
+### READ AVAILABLE ARGS(NAME, PRICE)
+GET localhost:8000/checklists?page_limit=2&page_offset=0
+Accept: application/json
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.InVzZXJAdGVsa29tLmNvbSI.zfF2khkhZ0XdxdTLnLP0iQ2c4zZqftl2lj1WMRYE9Ow
+
+{
+  "name": "jeruk"
+}
+
+### READ BY ID
+GET http://localhost:8000/checklists/1
+Accept: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.InVzZXJAdGVsa29tLmNvbSI.zfF2khkhZ0XdxdTLnLP0iQ2c4zZqftl2lj1WMRYE9Ow
+
+### UPDATE
+PUT http://localhost:8000/checklists/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.InVzZXJAdGVsa29tLmNvbSI.zfF2khkhZ0XdxdTLnLP0iQ2c4zZqftl2lj1WMRYE9Ow
+
+{
+  "data": {
+    "type": "checklists",
+    "id": 1,
+    "attributes": {
+      "object_domain": "contact",
+      "object_id": "1",
+      "description": "Need ",
+      "is_completed": true,
+      "completed_at": null,
+      "created_at": "2018-01-25T07:50:14+00:00"
+    },
+    "links": {
+      "self": "https://dev-kong.command-api.kw.com/checklists/50127"
+    }
+  }
+}
+
+### DELETE
+DELETE http://localhost:8000/checklists/3
+Authorization: eyJhbGciOiJIUzI1NiJ9.InVzZXJAdGVsa29tLmNvbSI.zfF2khkhZ0XdxdTLnLP0iQ2c4zZqftl2lj1WMRYE9Ow
+
+### ITEM
+GET http://localhost:8000/checklists/1/items
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.InVzZXJAdGVsa29tLmNvbSI.zfF2khkhZ0XdxdTLnLP0iQ2c4zZqftl2lj1WMRYE9Ow
+
+### STORE ITEM
+POST http://localhost:8000/checklists/1/items
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.InVzZXJAdGVsa29tLmNvbSI.zfF2khkhZ0XdxdTLnLP0iQ2c4zZqftl2lj1WMRYE9Ow
+
+{
+  "data": {
+    "attribute": {
+      "description": "verify this guy house.",
+      "due": "2019-01-19 18:34:51",
+      "urgency": "3",
+      "assignee_id": 123
+    }
+  }
+}
